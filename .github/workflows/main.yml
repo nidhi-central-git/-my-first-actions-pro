@@ -1,0 +1,12 @@
+name: My First CI PIPELINE
+on: [push]
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Copy Karo
+        uses: actions/checkout@v4
+
+      - name: ek message print karo
+        run: echo "GitHub Actions is working perfectly!"
+       
