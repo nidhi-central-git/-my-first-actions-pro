@@ -27,6 +27,6 @@ jobs:
              sudo docker run -d --name my-web-server -p 80:80 nginx
 
              echo "---STATUS---"
-             SUDO docker ps
+             sudo docker ps
                
           
