@@ -13,6 +13,7 @@ jobs:
            script: 
              echo "---STARTING NGINX DEPLOYMENT--"
              sudo docker run -d --name my-web-server -p 80:80 nginx 
+             
              echo "---check status--"
              sudo docker ps
                
