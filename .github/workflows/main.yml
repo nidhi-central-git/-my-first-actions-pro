@@ -10,7 +10,7 @@ jobs:
            host: ${{ secrets.HOST }}
            username: ${{ secrets.USERNAME }}
            key: ${{ secrets.SSH_KEY }}
-           script:
+           script: |
              echo "main ab amazon linux server ke andar hu"
              uptime
              docker --version
