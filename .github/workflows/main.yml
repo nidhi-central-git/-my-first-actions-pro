@@ -1,20 +1,29 @@
 name: deploy to amazon linux
-on:  [workflow_dispatch]
+on:  
+  push:
+    branches: [main]
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-       - name: ssh into ec2 and run command
-         uses: appleboy/ssh-action@master
+       - name: checkout code
+         uses: appleboy/scp-action@master
+         with:
+           host: ${{ secrets.HOST }}
+           username: ${{ secrets.USERNAME }}
+           key: ${{ secrets.SSH_KEY }}
+           source: "index.html"
+           target: "/home/ec2-user"
+       - name: deploy nginx
+         uses: appleboy/scp-action@master
          with:
            host: ${{ secrets.HOST }}
            username: ${{ secrets.USERNAME }}
            key: ${{ secrets.SSH_KEY }}
            script: |
-             echo "---STARTING NGINX DEPLOYMENT--"
-             sudo docker run -d --name my-web-server -p 80:80 nginx 
+             sudo docker stop my-web-server || true
+             sudo docker rm my-web-user || true
+             sudo docker run -d --name my-web-server -p 80:80 -v /home/ec2-user/index.html:/usr/share/nginx/html/index.html nginx
              
-             echo "---check status--"
-             sudo docker ps
                
           
