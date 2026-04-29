@@ -1,14 +1,12 @@
-name: My First CI PIPELINE
-on: 
-  push:
-  workflow_dispatch:
+name: learning variables and secrets
+on:  [workflow_dispatch]
 jobs:
-  test-job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Code Copy Karo
-        uses: actions/checkout@v4
+  secrets_check:
+     runs-on: ubuntu-latest
+     steps:
+       - name: dummy login attempt
+         run: |
+           echo "connecting to server"
+           echo "attempting to connect as user: ${{ secrets.SERVER_USER }}"
 
-      - name: ek message print karo
-        run: echo "GitHub Actions is working perfectly!"
-
+          
