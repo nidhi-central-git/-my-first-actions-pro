@@ -4,9 +4,8 @@ jobs:
   secrets_check:
      runs-on: ubuntu-latest
      steps:
-       - name: dummy login attempt
+       - name: print secret
          run: |
-           echo "connecting to server"
-           echo "attempting to connect as user: ${{ secrets.SERVER_USER }}"
+           echo "mera secret h: ${{ secrets.MY_SECRE_MSG }}"
 
           
