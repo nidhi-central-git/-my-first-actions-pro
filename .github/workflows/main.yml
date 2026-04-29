@@ -10,23 +10,10 @@ jobs:
            host: ${{ secrets.HOST }}
            username: ${{ secrets.USERNAME }}
            key: ${{ secrets.SSH_KEY }}
-           script: |
-             echo "---checking docker installing---"
-             if ! [ -x "$(command -v docker)" ]; 
-             then
-               echo "docker ni mil rha... going to install"
-               sudo yum update -y
-               sudo systemctl start docker
-               sudo systemctl enable docker 
-               sudo usermod -a -G docker ec2-user
-               newgrp docker <<EONG
-             EONG
-             fi
+           script: 
              echo "---STARTING NGINX DEPLOYMENT--"
-             sudo systemctl start docker
-             sudo docker run -d --name my-web-server -p 80:80 nginx
-
-             echo "---STATUS---"
+             sudo docker run -d --name my-web-server -p 80:80 nginx 
+             echo "---check status--"
              sudo docker ps
                
           
