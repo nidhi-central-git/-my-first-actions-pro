@@ -23,12 +23,14 @@ jobs:
            username: ${{ secrets.USERNAME }}
            key: ${{ secrets.SSH_KEY }}
            script: |
-             echo "going to stop my-web-server"
-             sudo docker stop my-web-server || true
-             echo "going to remove my-web-server"
-             sudo docker rm my-web-user || true
+             echo "going to stop my-web-server1"
+             sudo docker stop my-web-server1 || true
+             echo "going to remove my-web-server1"
+             sudo docker rm my-web-user1 || true
              
-             sudo docker run -d --name my-web-server1 -p 80:80 -v /home/ec2-user/index.html:/usr/share/nginx/html/index.html nginx
+             sudo docker run -d --name my-web-server2 -p 80:80 -v /home/ec2-user/index.html:/usr/share/nginx/html/index.html:Z nginx
+             echo "checking status"
+             sudo docker ps
              
                
           
