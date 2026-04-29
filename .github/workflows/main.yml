@@ -27,7 +27,7 @@ jobs:
              sudo docker stop my-web-server || true
              echo "going to remove my-web-server"
              sudo docker rm my-web-user || true
-             echo "going to run an other web-server"
+             
              sudo docker run -d --name my-web-server1 -p 80:80 -v /home/ec2-user/index.html:/usr/share/nginx/html/index.html nginx
              
                
