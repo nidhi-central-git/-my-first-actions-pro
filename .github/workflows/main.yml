@@ -13,6 +13,9 @@ jobs:
            script: |
              echo "main ab amazon linux server ke andar hu"
              uptime
+             echo "docker status"
              docker --version
+             echo "current directory"
+             pwd
 
           
