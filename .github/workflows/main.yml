@@ -25,7 +25,7 @@ jobs:
            script: |
              sudo docker stop my-web-server || true
              sudo docker rm my-web-user || true
-             sudo docker run -d --name my-web-server -p 80:80 -v /home/ec2-user/index.html:/usr/share/nginx/html/index.html nginx
+             sudo docker run -d --name my-web-server1 -p 80:80 -v /home/ec2-user/index.html:/usr/share/nginx/html/index.html nginx
              
                
           
