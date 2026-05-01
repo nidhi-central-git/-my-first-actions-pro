@@ -7,22 +7,22 @@ on:
   push:
     branches: [main]
 jobs:
-  build-and-push:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: build docker image
+      - name: Build Stage
         run: echo "building ur docker image"
-  deploy-dev:
-    needs: build-and-push
+  deploy-to-dev:
+    needs: build
     environment: development
     runs-on: ubuntu-latest
     steps:
       - name: deploying to dev server
         run: echo "deplloying to development envi"
   deploy-prod:
-    needs: deploy-dev
+    needs: deploy-to-dev
     environment: production
     runs-on: ubuntu-latest
     steps:
-      - name: final deploy to ec2
+      - name: Prod Deploy
         run: echo "deploying to ur production server"
