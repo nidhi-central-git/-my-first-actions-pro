@@ -2,7 +2,7 @@
              
                
           
-name: ci cd with environments
+name: ci cd with ec2 deployments
 on:
   push:
     branches: [main]
@@ -11,7 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build Stage
-        run: echo "building ur docker image"
+        uses: actions/checkout@v3
+      - name: login to docker hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      - name: build and push image
+        run: |
+          docker build -t your-dockerhub-username/my-first-actions-pro:latest .
+          docker push your-dockerhub-username/my-first-actions-pro:latest
   deploy-to-dev:
     needs: build
     environment: development
@@ -22,7 +28,13 @@ jobs:
   deploy-prod:
     needs: deploy-to-dev
     environment: production
-    runs-on: ubuntu-latest
-    steps:
-      - name: Prod Deploy
-        run: echo "deploying to your production server"
+    runs-on: self-hosted
+    steps: 
+     - name: pull and run on ec2
+       run: |
+          echo "connecting to ur amazon linux"
+          sudo docker stop my-web-app3 || true
+          sudo docker rm my-web-app3 || true
+          sudo docker pull your-dockerhub-username/my-first-actions-pro:latest
+          sudo docker run -d --name my-web-app5 -p 80:80 nidhi-central-git/my-first-actions-pro:latest
+          echo "deployment successful on ec2"
