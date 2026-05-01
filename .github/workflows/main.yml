@@ -16,8 +16,8 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
       - name: build and push image
         run: |
-          docker build -t your-dockerhub-username/my-first-actions-pro:latest .
-          docker push your-dockerhub-username/my-first-actions-pro:latest
+          docker build -t nidjz2307/my-first-actions-pro:latest .
+          docker push nidjz2307/my-first-actions-pro:latest
   deploy-to-dev:
     needs: build
     environment: development
@@ -35,6 +35,6 @@ jobs:
           echo "connecting to ur amazon linux"
           sudo docker stop my-web-app3 || true
           sudo docker rm my-web-app3 || true
-          sudo docker pull your-dockerhub-username/my-first-actions-pro:latest
+          sudo docker pull nidjz2307/my-first-actions-pro:latest
           sudo docker run -d --name my-web-app5 -p 80:80 nidhi-central-git/my-first-actions-pro:latest
           echo "deployment successful on ec2"
