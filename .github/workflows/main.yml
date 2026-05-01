@@ -25,4 +25,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Prod Deploy
-        run: echo "deploying to ur production server"
+        run: echo "deploying to your production server"
