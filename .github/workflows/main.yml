@@ -36,5 +36,5 @@ jobs:
           sudo docker stop my-web-app3 || true
           sudo docker rm my-web-app3 || true
           sudo docker pull nidjz2307/my-first-actions-pro:latest
-          sudo docker run -d --name my-web-app5 -p 80:80 nidhi-central-git/my-first-actions-pro:latest
+          sudo docker run -d --name my-web-app5 -p 80:80 nidjz2307/my-first-actions-pro:latest
           echo "deployment successful on ec2"
